@@ -21,6 +21,7 @@
     "docs:deploy": "bash ./scripts/deploy_docs.sh",
     "lint": "eslint -f friendly --ext .js,.vue ./",
     "test": "BABEL_ENV=test karma start scripts/karma.conf.js",
+    "precommit": "npm run lint",
     "commitmsg": "commitlint -E GIT_PARAMS",
     "release": "bash ./scripts/release.sh"
   },
