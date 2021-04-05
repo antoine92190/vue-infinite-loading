@@ -134,6 +134,9 @@ export default {
     identifier: {
       default: +new Date(),
     },
+    webComponentName: {
+      type: [String],
+    },
     onInfinite: Function,
   },
   watch: {
@@ -316,7 +319,15 @@ export default {
       let result;
 
       if (typeof this.forceUseInfiniteWrapper === 'string') {
-        result = document.querySelector(this.forceUseInfiniteWrapper);
+        let component;
+        if (this.webComponentName) {
+          component = document.querySelector(this.webComponentName);
+        }
+        if (component) {
+          result = component.shadowRoot.querySelector(this.forceUseInfiniteWrapper);
+        } else {
+          result = document.querySelector(this.forceUseInfiniteWrapper);
+        }
       }
 
       if (!result) {
